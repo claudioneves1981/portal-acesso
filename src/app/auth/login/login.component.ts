@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AutenticacaoService } from '../autenticacao.service';
 import { Route, Router } from '@angular/router';
 
@@ -12,10 +12,10 @@ export class LoginComponent {
 
   hide = true;
 
-  formLogin!: FormGroup;
-  formCadastro!: FormGroup;
+  formLogin!: UntypedFormGroup;
+  formCadastro!: UntypedFormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder,
+  constructor(private readonly formBuilder: UntypedFormBuilder,
     private authService: AutenticacaoService,
     private adminService: AdministrativoService,
     private route: Router){}
