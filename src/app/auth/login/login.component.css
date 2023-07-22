@@ -1,0 +1,10 @@
+@import url('./styles.css');
+@import url('./stylesAnimationClientes.css');
+
+
+mat-card {
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+  }
+
