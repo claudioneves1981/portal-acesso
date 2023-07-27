@@ -614,6 +614,7 @@ function salvarAdministrativo(editaradministrativo){
       if(administrativo == true){
 
          roles[0] = "ROLE_ADMIN";
+         roles[1] = "ROLE_USERS"
 
       }else{
 

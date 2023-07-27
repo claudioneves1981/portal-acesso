@@ -16,6 +16,10 @@ export class LoginComponent {
   formLogin!: FormGroup;
   formCadastro!: FormGroup;
 
+  @ViewChild('alert') alert!: ElementRef;
+  @ViewChild('msg') msg!: ElementRef;
+  @ViewChild('overlay') overlay!: ElementRef;
+
   constructor(private readonly formBuilder: FormBuilder,
     private authService: AutenticacaoService,
     private adminService: AdministrativoService,
@@ -23,6 +27,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.criarFormulario();
+    this.login();
   }
 
   criarFormulario(): void{
@@ -44,11 +49,36 @@ export class LoginComponent {
     if(!this.formLogin.valid){
       return;
     }
-    this.authService.login(this.formLogin.getRawValue()).subscribe(user => {
-      this.route.navigate(['home'])
-    },(error) => {
-      alert('erro ao tentar fazer o login')
-    });
+      this.authService.login(this.formLogin.getRawValue()).subscribe(
+        {
+            next: () => {
+                    console.log("teste")
+                    this.route.navigate(['toolbar']);
+            },
+            error: (erro) => {
+                    this.alert.nativeElement.removeClass("hide");
+                    this.alert.nativeElement.addClass("show");
+                    this.alert.nativeElement.addClass("showAlert");
+                    this.msg.nativeElement.text('erro ao tentar fazer o login');
+            setTimeout(() =>{
+                          this.alert.nativeElement.addClass("hide");
+                          this.alert.nativeElement.removeClass("show");
+
+            },5000);
+            }
+        }
+    )
+     // error: alert('teste')
+      //this.alert.nativeElement.removeClass("hide");
+      // this.alert.nativeElement.addClass("show");
+      //  this.alert.nativeElement.addClass("showAlert");
+      //  this.msg.nativeElement.text('erro ao tentar fazer o login');
+     // setTimeout(() =>{
+     //                     this.alert.nativeElement.addClass("hide");
+    //                      this.alert.nativeElement.removeClass("show");
+//
+   // },5000);
+    ;
   }
 
   confirma(){
@@ -57,12 +87,19 @@ export class LoginComponent {
     }
     this.adminService.inserir(this.formCadastro.getRawValue()).subscribe(admin => {
         this.route.navigate([''])
-    },(error) => {
-        alert('erro ao gravar usuario')
+    },(error) => {this.alert.nativeElement.removeClass("hide");
+      this.alert.nativeElement.addClass("show");
+      this.alert.nativeElement.addClass("showAlert");
+      this.msg.nativeElement.text('erro ao gravar usuario');
+      setTimeout(() =>{
+                          this.alert.nativeElement.addClass("hide");
+                          this.alert.nativeElement.removeClass("show");
+
+     },5000);
       });
     }
 
-    @ViewChild('overlay') overlay!: ElementRef;
+
     flipToLogin(){
       this.overlay.nativeElement.classList.remove('over-left');
       this.overlay.nativeElement.classList.add('over-right');

@@ -2,8 +2,6 @@
 </script>
 <script>AOS.init();</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="/src/app/scripts/scripts.js"></script>
-<script src="/src/app/scripts/funcoes.js"></script>
 <main>
     <div class="globalContainer">
       <!--FORMULÁRIO DE LOGIN-->
@@ -20,7 +18,7 @@
                     <input type="checkbox" id="rm-data" class="input-checkbox "><label for="rm-data">Lembrar credenciais.</label>
                 </div>
             </div>
-            <button type="button" id="logar" class="input-block bg-primary" (click)="login()" [disabled]="!formLogin.valid">Logar</button>
+            <button type="button" id="logar" class="input-block bg-primary" (click)="login()">Logar</button>
         </div>
         </mat-card>
     </div>
@@ -45,7 +43,7 @@
                 <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadNao" value="false" formControlName="administrativoCad" required = "required">Não
                      </div>
                  </div>
-                 <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="confirma()" [disabled]="!formCadastro.valid">Cadastre-se</button>
+                 <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="confirma()">Cadastre-se</button>
              </div>
             </mat-card>
     </div>
@@ -58,9 +56,9 @@
     </div>
 
     </div>
-        <div class="alert hide">
+        <div class="alert hide" #alert>
             <span class="fas fa-exclamation-circle">!</span>
-            <span class="msg">Atenção:</span>
+            <span class="msg" #msg>Atenção:</span>
             <span class="close-btn">
                     <span class="fas fa-times">X</span>
             </span>
