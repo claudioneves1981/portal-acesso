@@ -1,0 +1,12 @@
+<mat-toolbar>
+    <header> 
+    <ul class = "navigation nav">
+        <li><div id="usuariologado"></div></li>
+        <li><a class ="navigation__link" id="home-tab" routerLink ="/home" [routerLinkActive]="['active']" *ngIf="(user$ | async)?.roles?.includes('ROLE_USER')">Menu</a></li>
+        <li><a class ="navigation__link" id="profile-tab"  routerLink ="/cadastro" [routerLinkActive]="['active']" *ngIf="(user$ | async)?.roles?.includes('ROLE_USER')">Cadastro</a></li>
+        <li><a class ="navigation__link" id="contact-tab"  routerLink ="/pesquisa" [routerLinkActive]="['active']" *ngIf="(user$ | async)?.roles?.includes('ROLE_USER')">Pesquisa</a></li>
+        <li><a class ="navigation__link" id="adm-tab"  routerLink="/dashboard" [routerLinkActive]="['active']" *ngIf="(user$ | async)?.roles?.includes('ROLE_ADMIN')">Administrativo</a></li>
+        <li><a class ="navigation__link active" href="#" id="sair" (click)="sair()">Sair</a></li>
+    </ul>
+    </header>
+</mat-toolbar>

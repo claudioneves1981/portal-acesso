@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map} from 'rxjs';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 import { Admin, UserAdministrativo } from './models/user.models';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class AdministrativoService {
     
     }
   
-    confirma(userAdministrativo: UserAdministrativo): Observable<any> {
+    inserir(userAdministrativo: UserAdministrativo): Observable<any> {
       return this.http.post(`${this.baseUrl}cadastroadministrativo/salvar`, userAdministrativo).pipe(
         map(data => {
           

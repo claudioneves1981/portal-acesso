@@ -1,15 +1,17 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
 </script>
 <script>AOS.init();</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="/src/app/scripts/scripts.js"></script>
+<script src="/src/app/scripts/funcoes.js"></script>
 <main>
     <div class="globalContainer">
       <!--FORMULÁRIO DE LOGIN-->
     <div class="sign-in">
-        <mat-card [formGroup]="formLogin">
+        <mat-card formGroup="formLogin">
         <h2 class="sub-title">Login</h2>
         <div>
             <mat-label>Usuario</mat-label>
-            <mat-icon matSuffix>usuario</mat-icon>
             <input type="text" autocomplete="nope" name = "usuario" class="input-block" id="id" matInput placeholder="Usuario" formControlName="usuario">
             <mat-label>Senha</mat-label>
             <input class="input-block" name = "senha" matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
@@ -23,39 +25,39 @@
         </mat-card>
     </div>
     <div class="sign-up">
-        <mat-card [formGroup]="formCadastro">
+        <mat-card formGroup ="formCadastro">
             <h2 class="sub-title">Cadastro</h2>
              <div>
                  <mat-label>Nome</mat-label>
-                 <input type="text" name="nomeCad" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nomeCad"> required>
-                 <input type="text" name="usuarioCad" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuarioCad"> required>
+                 <input type="text" name="nomeCad" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nomeCad" required>
+                 <input type="text" name="usuarioCad" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuarioCad" required>
                  <input type="password" name="senhaCad" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaCad" required>
                  <input type="password" name="senhaConfirma" class="input-block" minlength="8" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaConfirma" required>
                  <mat-label>Administrativo</mat-label>
 
                 <div class = "checkbox">
                      <div class="boxes">
-                         <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadSim" matInput value = "true" formControlName="administrativoCad" required = "required">Sim
+                         <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadSim" value = "true" formControlName="administrativoCad" required = "required">Sim
 			         </div>
                 </div>
                  <div class = "checkbox">
                      <div class="boxes">
-                <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadNao" matInput value="false" formControlName="administrativoCad" required = "required">Não
+                <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadNao" value="false" formControlName="administrativoCad" required = "required">Não
                      </div>
                  </div>
                  <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="confirma()" [disabled]="!formCadastro.valid">Cadastre-se</button>
              </div>
             </mat-card>
     </div>
-    <div id="overlay" class="over">
+    <div id="overlay" class="over" #overlay>
             <div class="info">
             <p class="info-text">Bem vindo! Oque deseja fazer?</p>
-            <button class="bg-dark text-light" id="flip-to-login">Login</button>
-            <button class="bg-primary text-light" id="flip-to-signup">Cadastro</button>
+            <button class="bg-dark text-light" id="flip-to-login" (click)="flipToLogin()">Login</button>
+            <button class="bg-primary text-light" id="flip-to-signup" (click)="flipToSignup()">Cadastro</button>
              </div>
     </div>
 
-</div>
+    </div>
         <div class="alert hide">
             <span class="fas fa-exclamation-circle">!</span>
             <span class="msg">Atenção:</span>
@@ -65,6 +67,3 @@
 
         </div>
 </main>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="scripts/scripts.js"></script>
-<script src="scripts/funcoes.js"></script>

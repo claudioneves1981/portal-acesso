@@ -1,0 +1,70 @@
+<div tabindex="-1" aria-labelledby="exampleModalLabel">
+    <br>
+      <form id="formCadastro">
+          <h2 class="sub-title">Dados Pessoais</h2>
+          <div class="col-md-6" style ="width: 650px;">
+              <label>ID</label>
+              <input type="text" class="form-control" id="codigo" style="width: 46px; "><label>Nome</label><input type="text" class="form-control" id="nome"  style="width: 382px; ">
+              <label>Data Nascimento </label>
+              <div class="input-group date" data-provide="datepicker" style="width: 184px;">
+                  <input type="text" class="form-control" id="datanasc" onfocus="(this.type = 'date')">
+                  <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-th"></span>
+                  </div>
+              </div>
+              <label >Idade</label>
+              <input type="text" class="form-control" id="idade"  style="width: 115px;" onfocus="calculaIdade()">
+          </div>
+          <br>
+          <h2 class="sub-title">Endereço</h2>
+          <div class="col-md-6" style ="width: 650px;">
+              <label>CEP </label><input type="text" class="form-control" id="cep" style="width: 92px; " maxlength="9">
+              <button type="button" class="input-block bg-primary" onclick="consultarCep()">Pesquisar</button>
+              <label>Cidade </label><input type="text" class="form-control" id="cidade" style="width: 92px; ">
+              <label   >UF </label><input type="text" class="form-control" id="estado" style="width: 92px; ">
+              <label>Endereço </label><input type="text" class="form-control" id="endereco"  style="width: 300px; ">
+              <label>Nº </label><input type="text" class="form-control" id="numero" style="width: 47px; ">
+              <label>Bairro </label> <input type="text" class="form-control" id="bairro"  style="width: 300px; ">
+          </div>
+          <div class="col-md-6">
+              <label>Telefone1</label><input type="text" class="form-control" id="telefone1"  style="width: 325px; " onkeypress="mascara(this, '## #####-####')" maxlength="13">
+              <label>Telefone2</label><input type="text" class="form-control" id="telefone2"  style="width: 325px; " onkeypress="mascara(this, '## #####-####')" maxlength="13">
+          </div>
+          <br>
+          <label>Estuda </label>
+          <div>
+              <div>
+                        <input class="input-checkbox" type="radio" name="estuda" id="estudasim" value="true">
+                        <label class="form-check-label">Sim </label>
+                      <input class="input-checkbox" type="radio" name="estuda" id="estudanao" value="false">
+                      <label class="form-check-label">Não </label>
+              </div>
+          </div>
+           <label>Quantos moram na casa?</label><input type="text" class="form-control" id="quantosmoram"  style="width: 325px; ">
+           <label>Casa Propria?</label>
+          <div>
+              <div>
+                   <input type="radio" name="casapropria" id="casaprorpiasim" value="true">
+                   <label class="form-check-label">Sim</label>
+                   <input type="radio" name="casapropria" id="casaprorpianao" value="false">
+                   <label class="form-check-label">Não </label>
+              </div>
+          </div>
+          <div>
+              <label>Numero NIS </label><input type="text" class="form-control" id="numeronis" style="width: 325px; ">
+          </div>
+      </form>
+  <div>
+      <table>
+          <tr>
+              <th><button type="button" class="input-block bg-primary" onclick="salvarUsuario()">Salvar</button>
+              </th>
+              <th><button type="button" class="input-block bg-secondary" onclick="novoUsuario();">Novo</button>
+              </th>
+              <th><button type="button" class="input-block bg-warning" onclick="botaoDeletarDaTela();">Deletar</button>
+              </th>
+          </tr>
+      </table>
+    </div>
+</div>
+<script src="scripts/funcoes.js"></script>

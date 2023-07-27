@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, VERSION, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
 import { AutenticacaoService } from '../autenticacao.service';
+import { AdministrativoService } from '../administrativo.service';
 import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
   hide = true;
 
-  formLogin!: UntypedFormGroup;
-  formCadastro!: UntypedFormGroup;
+  formLogin!: FormGroup;
+  formCadastro!: FormGroup;
 
-  constructor(private readonly formBuilder: UntypedFormBuilder,
+  constructor(private readonly formBuilder: FormBuilder,
     private authService: AutenticacaoService,
     private adminService: AdministrativoService,
     private route: Router){}
@@ -60,4 +61,16 @@ export class LoginComponent {
         alert('erro ao gravar usuario')
       });
     }
+
+    @ViewChild('overlay') overlay!: ElementRef;
+    flipToLogin(){
+      this.overlay.nativeElement.classList.remove('over-left');
+      this.overlay.nativeElement.classList.add('over-right');
+    }
+
+    flipToSignup(){
+      this.overlay.nativeElement.classList.remove('over-right');
+      this.overlay.nativeElement.classList.add('over-left');    
+    }
+
 }

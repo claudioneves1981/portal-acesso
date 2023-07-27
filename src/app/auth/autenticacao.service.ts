@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Injectable, effect } from '@angular/core';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 import { User, UserLogin } from './models/user.models';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AutenticacaoService {
 
   baseUrl = 'http://localhost:8080';
 
-  private userSubject = new BehaviorSubject<User>({usuario: '', roles: []});
+  private userSubject = new BehaviorSubject<User>({usuario:'', roles:[]});
 
 
   constructor(private http: HttpClient) { 
@@ -21,11 +21,12 @@ export class AutenticacaoService {
     }
   }
 
+
   login(userLogin: UserLogin): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, userLogin).pipe(
       map(data => {
         
-        this.setUserSubject(data)
+        this.setUserSubject(data);
 
         return data;
       })

@@ -5,7 +5,7 @@ export interface UserLogin {
 
 export interface User {
     usuario: string;
-    roles: string[]
+    roles: string[];
 }
 
 export interface UserAdministrativo{

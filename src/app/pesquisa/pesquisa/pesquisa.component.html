@@ -1,0 +1,48 @@
+<div tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div>
+      <div>
+        <div>
+          <br>
+          <h2 class="sub-title">Pesquisa</h2>
+        </div>
+        <div>
+          <form>
+            <div>
+              <label>Pesquisar por algum Dado da Tabela.</label>
+              <input type="text" class="form-control" id="cadastroBusca" style="width: 325px;">            
+              <button type="button" class="input-block bg-success" onclick="pesquisarCadastro()">Buscar</button>
+            </div>
+            <div>
+            <br>
+            <button type="button" class="input-block bg-secondary" onclick="listarCadastros()">Gerar Relatorio</button>
+            <button type="button" class="input-block bg-warning" onclick="coletaDados()">Imprimir Selecionados</button>
+            <label id ="registrosencontrados">Registros Encontrados: </label>
+            </div>
+          </form>
+          <div style ="height: 800px;">
+   <table class="table table-bordered" id="tabelaresultados">
+    <thead>
+      <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Data Nasc</th>
+      <th scope="col"> Idade </th>
+      <th scope="col"> Endereço</th>
+      <th scope="col"> Número</th>
+      <th scope="col"> Bairro</th>
+      <th scope="col"> CEP</th>
+      <th scope="col"> Cidade</th>
+      <th scope="col"> Tel Principal</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Delete</th>
+      <th scope ="col">Imprimir/PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
