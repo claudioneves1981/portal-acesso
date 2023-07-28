@@ -6,7 +6,7 @@
     <div class="globalContainer">
       <!--FORMULÁRIO DE LOGIN-->
     <div class="sign-in">
-        <mat-card formGroup="formLogin">
+        <mat-card (formGroup)="formLogin">
         <h2 class="sub-title">Login</h2>
         <div>
             <mat-label>Usuario</mat-label>
@@ -23,29 +23,28 @@
         </mat-card>
     </div>
     <div class="sign-up">
-        <mat-card formGroup ="formCadastro">
+        <mat-card (formGroup)="formCadastro">
             <h2 class="sub-title">Cadastro</h2>
              <div>
                  <mat-label>Nome</mat-label>
-                 <input type="text" name="nomeCad" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nomeCad" required>
-                 <input type="text" name="usuarioCad" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuarioCad" required>
-                 <input type="password" name="senhaCad" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaCad" required>
-                 <input type="password" name="senhaConfirma" class="input-block" minlength="8" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaConfirma" required>
+                 <input type="text" name="nomeCad" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nomeCad">
+                 <input type="text" name="usuarioCad" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuarioCad">
+                 <input type="password" name="senhaCad" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaCad">
+                 <input type="password" matInput name="senhaConfirma" class="input-block" minlength="8" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaConfirma">
                  <mat-label>Administrativo</mat-label>
-
                 <div class = "checkbox">
                      <div class="boxes">
-                         <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadSim" value = "true" formControlName="administrativoCad" required = "required">Sim
+                         <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadSim" value = "true" formControlName="administrativoCad" required>Sim
 			         </div>
                 </div>
                  <div class = "checkbox">
                      <div class="boxes">
-                <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadNao" value="false" formControlName="administrativoCad" required = "required">Não
+                <input class="input-checkbox" type="radio" name="administrativoCad" id="administrativoCadNao" value="false" formControlName="administrativoCad" required>Não
                      </div>
                  </div>
                  <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="confirma()">Cadastre-se</button>
-             </div>
-            </mat-card>
+                </div>
+        </mat-card>
     </div>
     <div id="overlay" class="over" #overlay>
             <div class="info">

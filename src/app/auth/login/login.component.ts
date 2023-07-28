@@ -26,77 +26,57 @@ export class LoginComponent {
     private route: Router){}
 
   ngOnInit(): void {
-    this.criarFormulario();
-    this.login();
+    this.criarLogin();
+    this.criarCadastro();
   }
 
-  criarFormulario(): void{
+  criarLogin(): void{
     this.formLogin = this.formBuilder.group({
-      usuario: ['', [Validators.required]],
+      usuario: ['', Validators.required],
       senha: ['', [Validators.required, Validators.minLength(8)]]
     })
+  }
 
+  criarCadastro(): void{
     this.formCadastro = this.formBuilder.group({
-        nomeCad: ['', [Validators.required]],
-        usuarioCad: ['', [Validators.required]],
+        nomeCad: ['', Validators.required],
+        usuarioCad: ['', Validators.required],
         senhaCad: ['', [Validators.required, Validators.minLength(8)]],
         senhaConfirma: ['', [Validators.required, Validators.minLength(8)]],
-        admnistrativoCad:['', [Validators.required]]
+        administrativoCad: ['', Validators.required]
       })
   }
 
   login(){
-    if(!this.formLogin.valid){
-      return;
-    }
+   //if(!this.formLogin.valid){
+  //  alert('erro');
+   //  return;
+   // }
       this.authService.login(this.formLogin.getRawValue()).subscribe(
         {
             next: () => {
                     console.log("teste")
-                    this.route.navigate(['toolbar']);
+                    this.route.navigate(['home']);
             },
             error: (erro) => {
-                    this.alert.nativeElement.removeClass("hide");
-                    this.alert.nativeElement.addClass("show");
-                    this.alert.nativeElement.addClass("showAlert");
-                    this.msg.nativeElement.text('erro ao tentar fazer o login');
-            setTimeout(() =>{
-                          this.alert.nativeElement.addClass("hide");
-                          this.alert.nativeElement.removeClass("show");
-
-            },5000);
+              alert('erro');
             }
         }
-    )
-     // error: alert('teste')
-      //this.alert.nativeElement.removeClass("hide");
-      // this.alert.nativeElement.addClass("show");
-      //  this.alert.nativeElement.addClass("showAlert");
-      //  this.msg.nativeElement.text('erro ao tentar fazer o login');
-     // setTimeout(() =>{
-     //                     this.alert.nativeElement.addClass("hide");
-    //                      this.alert.nativeElement.removeClass("show");
-//
-   // },5000);
-    ;
+    );
   }
 
   confirma(){
-    if(!this.formCadastro.valid){
-      return;
-    }
-    this.adminService.inserir(this.formCadastro.getRawValue()).subscribe(admin => {
-        this.route.navigate([''])
-    },(error) => {this.alert.nativeElement.removeClass("hide");
-      this.alert.nativeElement.addClass("show");
-      this.alert.nativeElement.addClass("showAlert");
-      this.msg.nativeElement.text('erro ao gravar usuario');
-      setTimeout(() =>{
-                          this.alert.nativeElement.addClass("hide");
-                          this.alert.nativeElement.removeClass("show");
-
-     },5000);
-      });
+    this.adminService.inserir(this.formCadastro.getRawValue()).subscribe(
+      {
+          next: () => {
+                  console.log("teste")
+                  this.route.navigate(['']);
+          },
+          error: (erro) => {
+            alert('erro');
+          }
+      }
+     );
     }
 
 

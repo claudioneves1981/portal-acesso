@@ -19,7 +19,7 @@ export class AdministrativoService {
     }
   
     inserir(userAdministrativo: UserAdministrativo): Observable<any> {
-      return this.http.post(`${this.baseUrl}cadastroadministrativo/salvar`, userAdministrativo).pipe(
+      return this.http.post(`${this.baseUrl}/cadastroadministrativo/salvar`, userAdministrativo).pipe(
         map(data => {
           
           this.setAdminSubject(data)
