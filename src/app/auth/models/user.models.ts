@@ -18,7 +18,7 @@ export interface UserAdministrativo{
 
 	senha: string;
 
-	administrativo: boolean;
+	roles: string[];
 
 }
 
@@ -31,8 +31,6 @@ export interface Admin{
 	usuario: string;
 
 	senha: string;
-
-	administrativo: boolean;
 
     roles: string[];
 

@@ -10,7 +10,7 @@ export class AutenticacaoService {
 
   baseUrl = 'http://localhost:8080';
 
-  private userSubject = new BehaviorSubject<User>({usuario:'', roles:[]});
+  private userSubject = new BehaviorSubject<any>(undefined);
 
 
   constructor(private http: HttpClient) { 

@@ -15,6 +15,8 @@ export class LoginComponent {
 
   formLogin!: FormGroup;
   formCadastro!: FormGroup;
+  favOpcao!: string;
+  opcoes: string[] = ["Sim", "Não"];
 
   @ViewChild('alert') alert!: ElementRef;
   @ViewChild('msg') msg!: ElementRef;
@@ -38,20 +40,31 @@ export class LoginComponent {
   }
 
   criarCadastro(): void{
+
     this.formCadastro = this.formBuilder.group({
-        nomeCad: ['', Validators.required],
-        usuarioCad: ['', Validators.required],
-        senhaCad: ['', [Validators.required, Validators.minLength(8)]],
+        nome: ['', Validators.required],
+        usuario: ['', Validators.required],
+        senha: ['', [Validators.required, Validators.minLength(8)]],
         senhaConfirma: ['', [Validators.required, Validators.minLength(8)]],
-        administrativoCad: ['', Validators.required]
+        //administrativoCad: ['', Validators.required],
+        roles: [[]]
       })
+
+        if (this.favOpcao == "Sim") {
+          this.formCadastro.patchValue({
+            roles: ['ROLE_ADMIN', 'ROLE_USERS']
+          })
+        } else {
+          this.formCadastro.patchValue({
+            roles: ['ROLE_USERS']
+          })
+        }
+
+      
+
   }
 
   login(){
-   //if(!this.formLogin.valid){
-  //  alert('erro');
-   //  return;
-   // }
       this.authService.login(this.formLogin.getRawValue()).subscribe(
         {
             next: () => {
@@ -70,7 +83,7 @@ export class LoginComponent {
       {
           next: () => {
                   console.log("teste")
-                  this.route.navigate(['']);
+                  this.route.navigate(['login']);
           },
           error: (erro) => {
             alert('erro');
@@ -91,3 +104,5 @@ export class LoginComponent {
     }
 
 }
+
+
