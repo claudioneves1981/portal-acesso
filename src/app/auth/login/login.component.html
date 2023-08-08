@@ -1,12 +1,8 @@
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
-</script>
-<script>AOS.init();</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <main>
     <div class="globalContainer">
       <!--FORMULÁRIO DE LOGIN-->
     <div class="sign-in">
-        <mat-card (formGroup)="formLogin">
+    <form (formGroup)="formLogin">
         <h2 class="sub-title">Login</h2>
         <div>
             <mat-label>Usuario</mat-label>
@@ -20,28 +16,28 @@
             </div>
             <button type="button" id="logar" class="input-block bg-primary" (click)="login()">Logar</button>
         </div>
-        </mat-card>
+    </form>
     </div>
     <div class="sign-up">
-        <mat-card (formGroup)="formCadastro">
+        <mat-card (submit)="onFormCadastroSubmit()">
             <h2 class="sub-title">Cadastro</h2>
              <div>
                  <mat-label>Nome</mat-label>
-                 <input type="text" name="nomeCad" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nome">
-                 <input type="text" name="usuarioCad" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuario">
-                 <input type="password" name="senhaCad" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
-                 <input type="password" matInput name="senhaConfirma" class="input-block" minlength="8" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaConfirma">
-                 <input type ="hidden" formControlName = "roles">
+                 <input type="text" id = "nome" name="nome" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nome" (ngModel)="admin.nome" #nome>
+                 <input type="text"  name="usuario" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuario" (ngModel)="admin.usuario" #usuario>
+                 <input type="password"  name="senha" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senha" (ngModel)="admin.senha" #senha>
+                 <input type="password" name="senhaConfirma" class="input-block" minlength="8" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaConfirma">
+                 <input type ="hidden"  name = "roles" formControlName = "roles">
                  <mat-label>Administrativo</mat-label>
-                 <div *ngFor="let opcao of opcoes">
-                    <label for="{{opcao}}">
-                      <input id="{{opcao}}" [value]='opcao' type="radio" name="opcoes" (ngModel)="favOpcao">
-                      {{opcao}}
+                 <div *ngFor=" let favOpcao of opcoes">
+                    <label for="{{favOpcao}}">
+                      <input id="{{favOpcao}}" [value]='favOpcao' type="radio" name="opcoes" (ngModel)="opcao" #opcao>
+                      {{favOpcao}}
                     </label>
                 </div>
-                 <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="confirma()">Cadastre-se</button>
+                 <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="onFormCadastroSubmit()">Cadastre-se</button>
                 </div>
-        </mat-card>
+            </mat-card>
     </div>
     <div id="overlay" class="over" #overlay>
             <div class="info">

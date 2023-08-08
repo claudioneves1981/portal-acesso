@@ -22,16 +22,19 @@ export interface UserAdministrativo{
 
 }
 
-export interface Admin{
+export class Admin{
 
-    codigo: number;
+    codigo!: number;
 
-	nome: string;
+	nome!: string;
 
-	usuario: string;
+	usuario!: string;
 
-	senha: string;
+	senha!: string;
 
-    roles: string[];
+    roles!: string[];
+
+    constructor() {
+    }
 
 }
