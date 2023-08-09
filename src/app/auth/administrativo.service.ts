@@ -18,8 +18,12 @@ export class AdministrativoService {
     
     }
   
-    inserir(userAdministrativo: UserAdministrativo): Observable<any> {
-      return this.http.post(`/cadastroadministrativo/salvar`, userAdministrativo).pipe(
+    inserir(userAdministrativo: UserAdministrativo){
+      //console.log(this.http.post(`/administrativo/salvar`, userAdministrativo))
+     const admin = { nome: userAdministrativo.nome, usuario: userAdministrativo.usuario, senha: userAdministrativo.senha, roles: userAdministrativo.roles}
+
+    this.http.post(`/administrativo/salvar`, admin)
+      .pipe(
         map(data => {
           
           this.setAdminSubject(data)

@@ -69,7 +69,7 @@ export class LoginComponent {
 
     }
   
-    console.log(this.admin);
+    //console.log(this.admin);
 
     this.adminService.inserir(this.admin);	 
     

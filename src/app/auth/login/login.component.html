@@ -19,13 +19,13 @@
     </form>
     </div>
     <div class="sign-up">
-        <mat-card (submit)="onFormCadastroSubmit()">
+        <mat-card>
             <h2 class="sub-title">Cadastro</h2>
              <div>
                  <mat-label>Nome</mat-label>
-                 <input type="text" id = "nome" name="nome" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nome" (ngModel)="admin.nome" #nome>
-                 <input type="text"  name="usuario" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuario" (ngModel)="admin.usuario" #usuario>
-                 <input type="password"  name="senha" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senha" (ngModel)="admin.senha" #senha>
+                 <input type="text" id = "nome" name="nome" autocomplete="nope" class="input-block" matInput placeholder="Nome" formControlName="nome" #nome>
+                 <input type="text"  name="usuario" autocomplete="nope" class="input-block" matInput placeholder="Usuario" formControlName="usuario"  #usuario>
+                 <input type="password"  name="senha" class="input-block" matInput [type]="hide ? 'password' : 'text'" formControlName="senha" #senha>
                  <input type="password" name="senhaConfirma" class="input-block" minlength="8" matInput [type]="hide ? 'password' : 'text'" formControlName="senhaConfirma">
                  <input type ="hidden"  name = "roles" formControlName = "roles">
                  <mat-label>Administrativo</mat-label>
