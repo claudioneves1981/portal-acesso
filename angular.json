@@ -66,12 +66,18 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options":{
+            "browserTarget": "portal-acesso:build",
+            "proxyConfig": "src/proxy.config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "portal-acesso:build:production"
             },
             "development": {
-              "browserTarget": "portal-acesso:build:development"
+              "browserTarget": "portal-acesso:build:development",
+              "proxyConfig": "src/proxy.config.json"
+
             }
           },
           "defaultConfiguration": "development"
@@ -101,6 +107,5 @@
         }
       }
     }
-  },
-  "defaultProject": "portal-acesso"
+  }
 }

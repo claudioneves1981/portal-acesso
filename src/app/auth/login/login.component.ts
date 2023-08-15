@@ -18,6 +18,7 @@ export class LoginComponent {
   hide = true;
 
   formLogin!: FormGroup;
+  formCadastro!: FormGroup;
   favOpcao!: string;
   opcoes: string[] = ["Sim","Não"];
   senhaConfirma!: string;
@@ -38,6 +39,7 @@ export class LoginComponent {
   @ViewChild('usuario') usuario!: ElementRef;
   @ViewChild('senha') senha!: ElementRef;
   @ViewChild('opcao') opcao!: ElementRef;
+ 
 
 
   constructor( private readonly formBuilder: FormBuilder,
@@ -47,40 +49,67 @@ export class LoginComponent {
 
   ngOnInit(): void {
     //this.criarLogin();
-    this.onFormCadastroSubmit();
+
+
+    this.criarCadastro();
   }
 
-  onFormCadastroSubmit() {
-   
-  this.admin.nome = this.nome.nativeElement.value
-  this.admin.usuario = this.usuario.nativeElement.value
-  this.admin.senha = this.senha.nativeElement.value
+  criarCadastro(): void {
 
-    //this.admin.nome = this.formCadastro.get('nome')?.value;
-   // this.admin.usuario= this.formCadastro.get('usuario')?.value;
-   // this.admin.senha = this.formCadastro.get('senha')?.value;
+    this.admin.nome = this.nome.nativeElement.value
+    this.admin.usuario = this.usuario.nativeElement.value
+    this.admin.senha = this.senha.nativeElement.value
+
+  
+    this.formCadastro = this.formBuilder.group({
+
+   
+    nome: [this.admin.nome, Validators.required],
+    usuario: [this.admin.usuario, Validators.required],
+    senha: [this.admin.senha, [Validators.required, Validators.minLength(8)]],
+    roles:[[]]
+
+  })
+
     if(this.opcao.nativeElement.value == "Sim" && this.opcao.nativeElement.checked){
 
-      this.admin.roles = ["ROLE_ADMIN", "ROLE_USERS"];
+      //this.formCadastro.patchValue({
+        this.admin.roles = ["ROLE_ADMIN", "ROLE_USERS"]
+     // })
 
     }else{
 
-      this.admin.roles =["ROLE_USERS"];
+      //this.formCadastro.patchValue({
+        this.admin.roles = ["ROLE_USERS"]
+      //})
 
     }
-  
-    //console.log(this.admin);
-
-    this.adminService.inserir(this.admin);	 
+    
     
  }
 
- // criarLogin(): void{
- //   this.formLogin = this.formBuilder.group({
- //     usuario: [this.usuario, Validators.required],
- //     senha: [this.senha, [Validators.required, Validators.minLength(8)]]
- //   })
- // }
+ criarLogin(): void{
+    this.formLogin = this.formBuilder.group({
+      usuario: [this.usuario, Validators.required],
+      senha: [this.senha, [Validators.required, Validators.minLength(8)]]
+    })
+  }
+
+  cadastro(){
+
+    this.adminService.inserir(this.admin).subscribe(
+      {
+          next: () => {
+                  console.log("teste")
+                  this.route.navigate(['/']);
+          },
+          error: (erro) => {
+            alert('erro');
+          }
+      }
+  );
+
+  }
 
   login(){
       this.authService.login(this.formLogin.getRawValue()).subscribe(

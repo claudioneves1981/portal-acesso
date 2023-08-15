@@ -11,33 +11,30 @@ export class AdministrativoService {
 
     //baseUrl = 'http://localhost:8080';
   
-    private adminSubject = new BehaviorSubject<any>(undefined);
-  
+    private adminSubject = new BehaviorSubject<any>(undefined)
   
     constructor(private http: HttpClient) { 
-    
+  
     }
   
-    inserir(userAdministrativo: UserAdministrativo){
-      //console.log(this.http.post(`/administrativo/salvar`, userAdministrativo))
-     const admin = { nome: userAdministrativo.nome, usuario: userAdministrativo.usuario, senha: userAdministrativo.senha, roles: userAdministrativo.roles}
+    inserir(userAdministrativo: UserAdministrativo) : Observable<any>{
 
-    this.http.post(`/administrativo/salvar`, admin)
-      .pipe(
-        map(data => {
+      return this.http.post(`/cadastroadministrativo/salvar`, userAdministrativo).pipe(
+        
+      map(data => {
           
           this.setAdminSubject(data)
   
           return data;
-        })
+        }) 
+
       );
+
     }
   
-    private setAdminSubject(admin: any){
+    private setAdminSubject(admin: any): void{
       //sessionStorage.setItem('usuario', JSON.stringify(user));
       this.adminSubject.next(admin);
-
-
     }
   
     getUser(){

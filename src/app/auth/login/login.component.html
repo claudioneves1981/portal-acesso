@@ -19,7 +19,7 @@
     </form>
     </div>
     <div class="sign-up">
-        <mat-card>
+        <mat-card (formGroup)="formCadastro">
             <h2 class="sub-title">Cadastro</h2>
              <div>
                  <mat-label>Nome</mat-label>
@@ -35,7 +35,7 @@
                       {{favOpcao}}
                     </label>
                 </div>
-                 <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="onFormCadastroSubmit()">Cadastre-se</button>
+                 <button type="button" id="confirma" class="input-block bg-primary" name="confirma" (click)="cadastro()">Cadastre-se</button>
                 </div>
             </mat-card>
     </div>
