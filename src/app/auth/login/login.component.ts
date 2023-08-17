@@ -49,27 +49,38 @@ export class LoginComponent {
 
   ngOnInit(): void {
     //this.criarLogin();
-
-
     this.criarCadastro();
+
   }
 
   criarCadastro(): void {
+    
+    
+ }
+
+ criarLogin(): void{
+    this.formLogin = this.formBuilder.group({
+      usuario: [this.usuario, Validators.required],
+      senha: [this.senha, [Validators.required, Validators.minLength(8)]]
+    })
+  }
+
+  cadastro(){
 
     this.admin.nome = this.nome.nativeElement.value
     this.admin.usuario = this.usuario.nativeElement.value
     this.admin.senha = this.senha.nativeElement.value
 
   
-    this.formCadastro = this.formBuilder.group({
+    //this.formCadastro = this.formBuilder.group({
 
    
-    nome: [this.admin.nome, Validators.required],
-    usuario: [this.admin.usuario, Validators.required],
-    senha: [this.admin.senha, [Validators.required, Validators.minLength(8)]],
-    roles:[[]]
+    //nome: [this.admin.nome, Validators.required],
+    //usuario: [this.admin.usuario, Validators.required],
+    //senha: [this.admin.senha, [Validators.required, Validators.minLength(8)]],
+   // roles:[[]]
 
-  })
+  //})
 
     if(this.opcao.nativeElement.value == "Sim" && this.opcao.nativeElement.checked){
 
@@ -84,18 +95,8 @@ export class LoginComponent {
       //})
 
     }
-    
-    
- }
 
- criarLogin(): void{
-    this.formLogin = this.formBuilder.group({
-      usuario: [this.usuario, Validators.required],
-      senha: [this.senha, [Validators.required, Validators.minLength(8)]]
-    })
-  }
-
-  cadastro(){
+    //console.log(this.admin);
 
     this.adminService.inserir(this.admin).subscribe(
       {
