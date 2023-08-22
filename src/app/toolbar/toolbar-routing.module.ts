@@ -4,7 +4,7 @@ import { ToolbarComponent} from './toolbar/toolbar.component';
 import { authGuardsGuard } from '../guards/auth-guards.guard';
 
 const routes: Routes = [{
-    path: '', component: ToolbarComponent, canActivate:[authGuardsGuard], data:{ roles:'ROLE_USER'}
+    path: '', component: ToolbarComponent, canActivate:[authGuardsGuard], data:{ roles:'ROLE_USERS'}
 }];
 
 @NgModule({

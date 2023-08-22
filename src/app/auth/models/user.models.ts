@@ -1,10 +1,11 @@
 export interface UserLogin {
-    login: string;
-    senha: string;
+    usuarioLogin: string;
+    senhaLogin: string;
 }
 
 export interface User {
     usuario: string;
+    token: string;
     roles: string[];
 }
 

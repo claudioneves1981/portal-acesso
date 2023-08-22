@@ -2,13 +2,13 @@
     <div class="globalContainer">
       <!--FORMULÁRIO DE LOGIN-->
     <div class="sign-in">
-    <form (formGroup)="formLogin">
+    <mat-card>
         <h2 class="sub-title">Login</h2>
         <div>
             <mat-label>Usuario</mat-label>
-            <input type="text" autocomplete="nope" name = "usuario" class="input-block" id="id" matInput placeholder="Usuario" formControlName="usuario">
+            <input type="text" autocomplete="nope" name = "usuario" class="input-block" id="id" matInput placeholder="Usuario" formControlName="usuario" #usuarioLogin>
             <mat-label>Senha</mat-label>
-            <input class="input-block" name = "senha" matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
+            <input class="input-block" name = "senha" matInput [type]="hide ? 'password' : 'text'" formControlName="senha" #senhaLogin>
             <div class="checkbox">
                 <div class="boxes input-center">
                     <input type="checkbox" id="rm-data" class="input-checkbox "><label for="rm-data">Lembrar credenciais.</label>
@@ -16,10 +16,10 @@
             </div>
             <button type="button" id="logar" class="input-block bg-primary" (click)="login()">Logar</button>
         </div>
-    </form>
+    </mat-card>
     </div>
     <div class="sign-up">
-        <mat-card (formGroup)="formCadastro">
+        <mat-card>
             <h2 class="sub-title">Cadastro</h2>
              <div>
                  <mat-label>Nome</mat-label>

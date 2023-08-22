@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, effect } from '@angular/core';
 import { Observable, BehaviorSubject, map } from 'rxjs';
 import { User, UserLogin } from './models/user.models';
@@ -8,7 +8,10 @@ import { User, UserLogin } from './models/user.models';
 })
 export class AutenticacaoService {
 
-  baseUrl = 'http://localhost:8080';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser = {};
+
+  //baseUrl = 'http://localhost:8080';
 
   private userSubject = new BehaviorSubject<any>(undefined);
 
@@ -23,9 +26,8 @@ export class AutenticacaoService {
 
 
   login(userLogin: UserLogin): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, userLogin).pipe(
+    return this.http.post(`/signin`, userLogin).pipe(
       map(data => {
-        
         this.setUserSubject(data);
 
         return data;
@@ -35,6 +37,7 @@ export class AutenticacaoService {
 
   private setUserSubject(user: any){
     sessionStorage.setItem('usuario', JSON.stringify(user));
+    localStorage.setItem('access_token', user.token);
     this.userSubject.next(user);
   }
 
@@ -46,12 +49,22 @@ export class AutenticacaoService {
     return this.userSubject.getValue();
   }
 
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    return authToken !== null ? true : false;
+  }
+
   logout(){
     this.userSubject.next({
-      usuario: '',
-      roles: []
+      login: '',
+      token: ''
     });
     sessionStorage.clear();
+    localStorage.clear();
   }
 
 

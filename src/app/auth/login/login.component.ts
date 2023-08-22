@@ -17,12 +17,8 @@ export class LoginComponent {
 
   hide = true;
 
-  formLogin!: FormGroup;
-  formCadastro!: FormGroup;
   favOpcao!: string;
   opcoes: string[] = ["Sim","Não"];
-  senhaConfirma!: string;
-  isValidFormCadastroSubmitted: boolean = false;
  
   admin = {
     codigo: 0,
@@ -32,6 +28,13 @@ export class LoginComponent {
     roles: ['']
   }
 
+  acesso = {
+
+    usuarioLogin: '',
+    senhaLogin: ''
+
+  }
+
   @ViewChild('alert') alert!: ElementRef;
   @ViewChild('msg') msg!: ElementRef;
   @ViewChild('overlay') overlay!: ElementRef;
@@ -39,6 +42,9 @@ export class LoginComponent {
   @ViewChild('usuario') usuario!: ElementRef;
   @ViewChild('senha') senha!: ElementRef;
   @ViewChild('opcao') opcao!: ElementRef;
+  @ViewChild('usuarioLogin') usuarioLogin!: ElementRef;
+  @ViewChild('senhaLogin') senhaLogin!: ElementRef;
+
  
 
 
@@ -48,22 +54,10 @@ export class LoginComponent {
     private route: Router){}
 
   ngOnInit(): void {
-    //this.criarLogin();
-    this.criarCadastro();
-
+    this.login();
+    this.cadastro();
   }
 
-  criarCadastro(): void {
-    
-    
- }
-
- criarLogin(): void{
-    this.formLogin = this.formBuilder.group({
-      usuario: [this.usuario, Validators.required],
-      senha: [this.senha, [Validators.required, Validators.minLength(8)]]
-    })
-  }
 
   cadastro(){
 
@@ -71,37 +65,19 @@ export class LoginComponent {
     this.admin.usuario = this.usuario.nativeElement.value
     this.admin.senha = this.senha.nativeElement.value
 
-  
-    //this.formCadastro = this.formBuilder.group({
-
-   
-    //nome: [this.admin.nome, Validators.required],
-    //usuario: [this.admin.usuario, Validators.required],
-    //senha: [this.admin.senha, [Validators.required, Validators.minLength(8)]],
-   // roles:[[]]
-
-  //})
-
     if(this.opcao.nativeElement.value == "Sim" && this.opcao.nativeElement.checked){
 
-      //this.formCadastro.patchValue({
         this.admin.roles = ["ROLE_ADMIN", "ROLE_USERS"]
-     // })
 
     }else{
 
-      //this.formCadastro.patchValue({
         this.admin.roles = ["ROLE_USERS"]
-      //})
 
     }
-
-    //console.log(this.admin);
 
     this.adminService.inserir(this.admin).subscribe(
       {
           next: () => {
-                  console.log("teste")
                   this.route.navigate(['/']);
           },
           error: (erro) => {
@@ -113,10 +89,13 @@ export class LoginComponent {
   }
 
   login(){
-      this.authService.login(this.formLogin.getRawValue()).subscribe(
+
+    this.acesso.usuarioLogin= this.usuarioLogin.nativeElement.value
+    this.acesso.senhaLogin = this.senhaLogin.nativeElement.value
+
+      this.authService.login(this.acesso).subscribe(
         {
             next: () => {
-                    console.log("teste")
                     this.route.navigate(['home']);
             },
             error: (erro) => {
