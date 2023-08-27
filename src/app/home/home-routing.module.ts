@@ -4,7 +4,7 @@ import { HomeComponent} from './home/home.component';
 import { authGuardsGuard } from '../guards/auth-guards.guard';
 
 const routes: Routes = [{
-    path: '', component: HomeComponent, canActivate:[authGuardsGuard], data:{ roles:'ROLE_USER'}
+    path: 'home', component: HomeComponent, canActivate:[authGuardsGuard], data:{ roles:'ROLE_USERS'}
 }];
 
 @NgModule({

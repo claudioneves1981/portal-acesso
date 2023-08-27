@@ -1,6 +1,6 @@
 export interface UserLogin {
-    usuarioLogin: string;
-    senhaLogin: string;
+    username: string;
+    password: string;
 }
 
 export interface User {

@@ -30,8 +30,8 @@ export class LoginComponent {
 
   acesso = {
 
-    usuarioLogin: '',
-    senhaLogin: ''
+    username: '',
+    password: ''
 
   }
 
@@ -54,8 +54,8 @@ export class LoginComponent {
     private route: Router){}
 
   ngOnInit(): void {
-    this.login();
-    this.cadastro();
+   // this.login();
+    //this.cadastro();
   }
 
 
@@ -90,13 +90,13 @@ export class LoginComponent {
 
   login(){
 
-    this.acesso.usuarioLogin= this.usuarioLogin.nativeElement.value
-    this.acesso.senhaLogin = this.senhaLogin.nativeElement.value
+    this.acesso.username= this.usuarioLogin.nativeElement.value
+    this.acesso.password = this.senhaLogin.nativeElement.value
 
       this.authService.login(this.acesso).subscribe(
         {
             next: () => {
-                    this.route.navigate(['home']);
+                    this.route.navigate(['/home']);
             },
             error: (erro) => {
               alert('erro');
